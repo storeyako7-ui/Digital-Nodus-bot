@@ -5,6 +5,7 @@ const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: { 
         headless: true,
+        executablePath: '/usr/bin/chromium-browser',
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -19,19 +20,31 @@ const client = new Client({
 });
 
 client.on('qr', qr => {
+    console.log('===== ESCANEA ESTE QR CON +240222392249 =====');
     qrcode.generate(qr, {small: true});
-    console.log('ESCANEA ESTE QR CON +240222392249');
+    console.log('=============================================');
 });
 
 client.on('ready', () => {
     console.log('🔥 Digital Nodus ACTIVADO pa México/Colombia');
 });
 
-client.on('message', async msg => {
-    if(msg.body.match(/(hola|info|precio|curso|ganar|negocio)/i)) {
-        msg.reply(🇲🇽 *MÉXICO | COLOMBIA* 🇨🇴
+client.on('authenticated', () => {
+    console.log('✅ WHATSAPP AUTENTICADO');
+});
 
-*3 MÉTODOS PARA GANAR EN DÓLARES:*
+client.on('auth_failure', msg => {
+    console.error('❌ FALLO DE AUTENTICACIÓN', msg);
+});
+
+client.on('message', async msg => {
+    const chat = await msg.getChat();
+    
+    if(msg.body.match(/(hola|info|precio|curso|ganar|negocio)/i)) {
+        await chat.sendStateTyping();
+        await msg.reply(🇲🇽 *MÉXICO | COLOMBIA* 🇨🇴
+
+*3 MÉTODOS PARA GANAR EN DÓLARES DESDE CASA:*
 
 *1️⃣ WHATSAPP MONEY $88 USD*
 👉 https://go.hotmart.com/E105593307T
