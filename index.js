@@ -5,53 +5,49 @@ const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: { 
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process',
+            '--disable-gpu'
+        ]
     }
 });
 
-// 👇 YASSER, CAMBIA ESTOS 4 DATOS POR LOS TUYOS 👇
-const LINK1 = 'PON_AQUI_TU_LINK_WHATSAPP_MONEY';
-const LINK2 = 'PON_AQUI_TU_LINK_IMPORTAR_CHINA'; 
-const LINK3 = 'PON_AQUI_TU_LINK_AFILIADO_CERO';
-const TU_NUMERO = '240XXXXXXXXX'; // Tu WhatsApp con código de Guinea
-
 client.on('qr', qr => {
-    console.log('Escanea este QR con WhatsApp:');
     qrcode.generate(qr, {small: true});
+    console.log('ESCANEA ESTE QR CON +240222392249');
 });
 
 client.on('ready', () => {
-    console.log('Bot Digital Nodus Activo ✅');
+    console.log('🔥 Digital Nodus ACTIVADO pa México/Colombia');
 });
 
-client.on('message', msg => {
-    const texto = msg.body.toLowerCase().trim();
-    
-    if(texto === 'hola'  texto === '1'  texto === 'dinero' || texto === 'info') {
-        msg.reply(💰 *DIGITAL NODUS* | GANA DINERO HOY
+client.on('message', async msg => {
+    if(msg.body.match(/(hola|info|precio|curso|ganar|negocio)/i)) {
+        msg.reply(🇲🇽 *MÉXICO | COLOMBIA* 🇨🇴
 
-Elige tu método favorito:
+*3 MÉTODOS PARA GANAR EN DÓLARES:*
 
-1️⃣ *WhatsApp Money $37*
-Cierra ventas todos los días por WhatsApp
-👉 ${LINK1}
+*1️⃣ WHATSAPP MONEY $88 USD*
+👉 https://go.hotmart.com/E105593307T
 
-2️⃣ *Importador Express $67*  
-Compra a $1 en China, vende a $10 aquí
-👉 ${LINK2}
+*2️⃣ IMPORTADOR LATAM $21 USD*  
+👉 https://go.hotmart.com/J105593619K
 
-3️⃣ *Afiliado Cero $27*
-Comisiones sin invertir 1 FCFA
-👉 ${LINK3}
+*3️⃣ AFILIADO DESDE CERO $11 USD*
+👉 https://go.hotmart.com/T105593779R
 
-✅ Pago seguro Hotmart
-✅ Acceso inmediato 
-✅ Garantía 7 días
-
-Dale clic al link que quieras.
-
-¿Dudas? Escríbeme: wa.me/${TU_NUMERO});
+*Responde 1, 2 o 3* 👇);
     }
+    
+    if(msg.body === '1') msg.reply(*WHATSAPP MONEY* 🔥\n👉 https://go.hotmart.com/E105593307T);
+    if(msg.body === '2') msg.reply(*IMPORTADOR LATAM* 📦\n👉 https://go.hotmart.com/J105593619K);
+    if(msg.body === '3') msg.reply(*AFILIADO DESDE CERO* 💰\n👉 https://go.hotmart.com/T105593779R);
 });
 
 client.initialize();
